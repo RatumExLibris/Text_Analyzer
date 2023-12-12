@@ -10,3 +10,10 @@ poetry install
 ```commandline
 python src/download_model.py
 ```
+
+## Run
+```commandline
+uvicorn src.api:app --port 8000
+```
+
+go to /docs

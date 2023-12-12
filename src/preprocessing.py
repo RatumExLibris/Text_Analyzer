@@ -5,7 +5,7 @@ from nltk.corpus import stopwords
 import numpy as np
 import pickle
 from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.preprocessing import MinMaxScaler
 
 nltk.download('stopwords', quiet=True)
 nltk.download('punkt', quiet=True)
@@ -34,8 +34,13 @@ class Pipeline:
     def _get_predictions(self):
         text_emb = self.model.transform([self.text])
         cosine_sim = np.array([cosine_similarity(tag_emb, text_emb)[0][0] for tag_emb in self.tags_embs])
-        if cosine_sim.max() != 0:
-            cosine_sim /= cosine_sim.max()
+        #if cosine_sim.max() != 0:
+            #cosine_sim = cosine_sim - cosine_sim.min()
+            #cosine_sim /= cosine_sim.max()
+            #scaler = MinMaxScaler()
+            #cosine_sim = scaler.fit_transform(np.array([cosine_sim]))[0]
+            #cosine_sim_std = (cosine_sim - cosine_sim.min()) / (cosine_sim.max() - cosine_sim.min())
+            #cosine_sim = cosine_sim_std * (cosine_sim.max() - cosine_sim.min()) + cosine_sim.min()
         self.tags = dict([(key, value) for i, (key, value) in enumerate(zip(self.tags_names, list(cosine_sim)))])
 
     def process(self):
@@ -48,8 +53,8 @@ class Pipeline:
     def get_tags(self):
         return self.tags
 
-pipeline = Pipeline()
-text = 'В первобытном обществе уровень экономического развития был низким, обеспечивающим потребление на грани физического выживания. Сначала первобытные люди добывали средства к существованию охотой и собирательством, но в результате неолитической революции возникли земледелие и животноводство. Развитие общества привело к разделению труда — выделились земледельческие и пастушеские племена, выделились ремесленники, первыми из которых были кузнецы. Появились социальное неравенство, социальные классы и государство. Возникло рабовладение.\nПостепенно развивался товарообмен, который сначала осуществлялся в форме натурального обмена (бартера), но с появлением денег превратился в торговлю. Тем не менее, в обществах Древнего мира и Средневековья преобладающим было натуральное хозяйство. Во многих государствах древности существовала так называемая дворцовая экономика, основанная на сочетании планового хозяйства (позволяющего осуществлять крупные общественные работы, такие как орошение, сооружение дворцов и пирамид) и натурального хозяйства.'
-pipeline.set_text(text)
-pipeline.process()
-print(pipeline.get_tags())
+#pipeline = Pipeline()
+#text = 'В первобытном обществе уровень экономического развития был низким, обеспечивающим потребление на грани физического выживания. Сначала первобытные люди добывали средства к существованию охотой и собирательством, но в результате неолитической революции возникли земледелие и животноводство. Развитие общества привело к разделению труда — выделились земледельческие и пастушеские племена, выделились ремесленники, первыми из которых были кузнецы. Появились социальное неравенство, социальные классы и государство. Возникло рабовладение.\nПостепенно развивался товарообмен, который сначала осуществлялся в форме натурального обмена (бартера), но с появлением денег превратился в торговлю. Тем не менее, в обществах Древнего мира и Средневековья преобладающим было натуральное хозяйство. Во многих государствах древности существовала так называемая дворцовая экономика, основанная на сочетании планового хозяйства (позволяющего осуществлять крупные общественные работы, такие как орошение, сооружение дворцов и пирамид) и натурального хозяйства.'
+#pipeline.set_text(text)
+#pipeline.process()
+#print(pipeline.get_tags())
