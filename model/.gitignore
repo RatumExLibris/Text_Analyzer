@@ -1,2 +1,3 @@
-/model.pickle
+/model.pkl
 /tags_embs.npy
+/tags_names.txt

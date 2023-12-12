@@ -20,8 +20,10 @@ with open(PARAMS_PATH, 'r') as f:
 
 folder_url = paryaml['public_folder_url']
 folder_path = str(paryaml['version']) + '/'
-model_file = folder_path + 'model.pickle'
+model_file = folder_path + 'model.pkl'
 tags_embs = folder_path + 'tags_embs.npy'
+tags_names = folder_path + 'tags_names.txt'
 
-download_file(model_file, 'model/model.pickle')
+download_file(model_file, 'model/model.pkl')
 download_file(tags_embs, 'model/tags_embs.npy')
+download_file(tags_names, 'model/tags_names.txt')
