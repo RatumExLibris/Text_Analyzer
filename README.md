@@ -11,12 +11,12 @@ poetry install
 ```
 ### Download model
 ```commandline
-python src/download_model.py
+python app/src/download_model.py
 ```
 
 ### Run
 ```commandline
-uvicorn src.api:app --port 8000
+uvicorn app.src.api:app --port 8000
 ```
 
 ## Install in docker
