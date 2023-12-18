@@ -5,7 +5,7 @@ import json
 import yaml
 from yaml.loader import SafeLoader
 
-PARAMS_PATH = 'model_params.yaml'
+PARAMS_PATH = 'app/model_params.yaml'
 
 def download_file(file_name, target_folder):
     url = ('https://cloud-api.yandex.net/v1/disk/public/resources/download' +
@@ -24,6 +24,6 @@ model_file = folder_path + 'model.pkl'
 tags_embs = folder_path + 'tags_embs.npy'
 tags_names = folder_path + 'tags_names.txt'
 
-download_file(model_file, 'model/model.pkl')
-download_file(tags_embs, 'model/tags_embs.npy')
-download_file(tags_names, 'model/tags_names.txt')
+download_file(model_file, 'app/model/model.pkl')
+download_file(tags_embs, 'app/model/tags_embs.npy')
+download_file(tags_names, 'app/model/tags_names.txt')

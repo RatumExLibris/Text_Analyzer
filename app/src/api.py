@@ -1,4 +1,4 @@
-from src.preprocessing import Pipeline
+from app.src.preprocessing import Pipeline
 from fastapi import FastAPI, Depends
 
 app = FastAPI()

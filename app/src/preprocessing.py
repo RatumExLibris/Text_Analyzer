@@ -12,13 +12,13 @@ nltk.download('punkt', quiet=True)
 
 class Pipeline:
     def __init__(self):
-        with open('model/tags_names.txt', encoding='utf8') as f:
+        with open('app/model/tags_names.txt', encoding='utf8') as f:
             self.tags_names = f.read().split(',')
         self.patterns = "[A-Za-z0-9!#$%&'()*+,./:;<=>?@[\]^_`{|}~—\"\-]+"
         self.stopwords_ru = stopwords.words("russian")
         self.morph = MorphAnalyzer()
-        self.model = pickle.load(open("model/model.pkl", "rb"))
-        self.tags_embs = np.load('model/tags_embs.npy')
+        self.model = pickle.load(open("app/model/model.pkl", "rb"))
+        self.tags_embs = np.load('app/model/tags_embs.npy')
         self.tags = ''
         self.text = ''
 
