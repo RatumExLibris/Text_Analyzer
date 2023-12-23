@@ -55,10 +55,14 @@ docker run -d --name your_container_name -p your_port_number:80 your_image_name
 
 ## Работа
 
-Для работы с API после запуска контейнера необходимо перейти по одному из адресов в браузере:
+Для работы с RabbitMQ необходимо перейти по адресу в браузере:
 
-- **http://localhost:container_port_number/docs** на локальной машине,
+- **http://localhost:15672/#/** на локальной машине,
 
-- **http://your_local_IP:container_port_number/docs** на другом компьютере в локальной сети,
+- **http://your_local_IP:15672/#/** на другом компьютере в локальной сети,
 
-- **http://global_IP:container_port_number/docs** при хостинге.
+- **http://global_IP:15672/#/** при хостинге.
+
+Ввести логин и пароль:
+   - Логин: guest
+   - Пароль: guest
