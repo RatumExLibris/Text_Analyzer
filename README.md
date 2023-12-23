@@ -14,9 +14,26 @@ poetry install
 python app/src/download_model.py
 ```
 
-### Run
+### Create and run rabbitmq image
 ```commandline
-uvicorn app.src.api:app --port 8000
+docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.12-management
+```
+
+### Create queues
+```commandline
+python app/src/create_channels.py
+```
+
+### Do next parallel
+
+#### Create file queue listener
+```commandline
+python app/src/rabbircosume.py -hostn localhost
+```
+
+#### Run file tags getter from queue
+```commandline
+python app/src/get_tags_from_queue.py
 ```
 
 ## Install in docker
@@ -26,7 +43,11 @@ uvicorn app.src.api:app --port 8000
 docker build -t your_image_name .
 ```
 
-2. Далее создаётся контейнер
+2. You can change parameters:
+    - 'version' - model_version in app/modelparams.yaml
+    - 'Host IP' - --hostn in Dockerfile
+
+3. Далее создаётся контейнер
 
 ```bash
 docker run -d --name your_container_name -p your_port_number:80 your_image_name
