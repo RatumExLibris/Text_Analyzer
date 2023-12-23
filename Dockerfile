@@ -27,4 +27,4 @@ RUN python app/src/download_model.py
 EXPOSE 80
 
 # Command to run the application
-CMD ["python", "app/src/rabbitcosume.py", "--hostn", "localhost"]
+CMD ["python", "app/src/rabbitcosume.py"]

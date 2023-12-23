@@ -1,17 +1,19 @@
 import json
-import argparse
 import base64
+import socket
 
+import docker
 import pika
 from preprocessing import Pipeline
 
-parser = argparse.ArgumentParser()
-parser.add_argument("-hostn", help="IP adress or host name", type=str, default='localhost')
-args = parser.parse_args()
-
 pipeline = Pipeline()
 
-connection = pika.BlockingConnection(pika.ConnectionParameters(host=args.hostn))
+client = docker.from_env()
+network_name = "mynetwork"
+atp_container = client.containers.get(socket.gethostname())
+client.networks.get(network_name).connect(container=atp_container.id)
+
+connection = pika.BlockingConnection(pika.URLParameters("amqp://guest:guest@rabbitmq/"))
 channel = connection.channel()
 def publishTagsAndId(user_id, tags: dict):
     message = json.dumps(tags)
