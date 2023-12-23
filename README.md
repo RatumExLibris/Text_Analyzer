@@ -31,7 +31,7 @@ python app/src/create_channels.py
 python app/src/rabbircosume.py -hostn localhost
 ```
 
-#### Run file tags getter from queue
+#### Run tags getter from queue
 ```commandline
 python app/src/get_tags_from_queue.py
 ```
